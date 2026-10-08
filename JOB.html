@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Application App</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+
+            /* Creative background */
+            background:
+                linear-gradient(rgba(20, 30, 70, 0.75), rgba(10, 20, 50, 0.85)),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            color: #333;
+        }
+
+        /* Header */
+
+        .header {
+            text-align: center;
+            padding: 35px 20px;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 3px 8px black;
+        }
+
+        .creator {
+            margin-top: 10px;
+            font-size: 17px;
+            color: #ffe082;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            font-size: 15px;
+            color: #eeeeee;
+        }
+
+        /* Main container */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #263c77;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Fieldsets */
+
+        fieldset {
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: #f7f9ff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        legend {
+            background: #3949ab;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Labels */
+
+        label {
+            font-weight: 500;
+            color: #263238;
+        }
+
+        /* Inputs */
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 7px;
+            border: 1px solid #cfd8dc;
+            border-radius: 9px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="url"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3949ab;
+            box-shadow: 0 0 8px rgba(57,73,171,0.25);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* File input */
+
+        input[type="file"] {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Skills */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .skill {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .skill:hover {
+            background: #e8eaf6;
+        }
+
+        /* Declaration */
+
+        .declaration {
+            background: #fff8e1;
+            border-left: 5px solid #ffb300;
+        }
+
+        /* Buttons */
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn,
+        .reset-btn {
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 8px;
+            transition: 0.3s;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #3949ab, #6a1b9a);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(57,73,171,0.35);
+        }
+
+        .reset-btn {
+            background: #eceff1;
+            color: #37474f;
+        }
+
+        .reset-btn:hover {
+            background: #cfd8dc;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .footer strong {
+            color: #ffe082;
+        }
+
+        /* Responsive */
+
+        @media(max-width: 700px) {
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>💼 JOB APPLICATION APP</h1>
+
+    <div class="creator">
+        Created by RACHANA GUBBHIHALLI SHASHIDHARA
+    </div>
+
+    <div class="subtitle">
+        Build Your Career • Find Your Opportunity • Apply With Confidence
+    </div>
+
+</div>
+
+
+<!-- MAIN FORM -->
+
+<div class="container">
+
+    <h2 class="form-title">
+        Job Application Form
+    </h2>
+
+
+    <form>
+
+
+        <!-- PERSONAL DETAILS -->
+
+        <fieldset>
+
+            <legend>👤 1. Personal Details</legend>
+
+            <label>Full Name:</label>
+            <input type="text"
+                   name="name"
+                   placeholder="Enter your full name"
+                   required>
+
+            <br><br>
+
+            <label>Email:</label>
+            <input type="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required>
+
+            <br><br>
+
+            <label>Phone Number:</label>
+            <input type="tel"
+                   name="phone"
+                   placeholder="Enter phone number"
+                   required>
+
+            <br><br>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob">
+
+            <br><br>
+
+            <label>Gender:</label>
+
+            <select name="gender">
+
+                <option value="">-- Select Gender --</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Address:</label>
+
+            <textarea name="address"
+                      rows="4"
+                      placeholder="Enter your address"></textarea>
+
+            <br><br>
+
+            <label>City:</label>
+
+            <input type="text"
+                   name="city"
+                   placeholder="Enter city">
+
+            <br><br>
+
+            <label>State:</label>
+
+            <select name="state">
+
+                <option value="">-- Select State --</option>
+
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Tamil Nadu</option>
+                <option>Andhra Pradesh</option>
+                <option>Telangana</option>
+                <option>Maharashtra</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Rajasthan</option>
+                <option>Delhi</option>
+                <option>Uttar Pradesh</option>
+                <option>West Bengal</option>
+                <option>Madhya Pradesh</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Haryana</option>
+                <option>Bihar</option>
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>PIN Code:</label>
+
+            <input type="text"
+                   name="pincode"
+                   placeholder="Enter PIN code">
+
+        </fieldset>
+
+
+        <!-- EDUCATION -->
+
+        <fieldset>
+
+            <legend>🎓 2. Education Details</legend>
+
+            <label>Highest Qualification:</label>
+
+            <select name="qualification">
+
+                <option value="">-- Select Qualification --</option>
+
+                <option>10th / SSLC</option>
+                <option>12th / PUC</option>
+                <option>Diploma</option>
+                <option>B.E</option>
+                <option>B.Tech</option>
+                <option>BCA</option>
+                <option>B.Sc</option>
+                <option>BBM</option>
+                <option>BBA</option>
+                <option>MCA</option>
+                <option>M.Tech</option>
+                <option>M.Sc</option>
+                <option>MBA</option>
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Branch / Specialization:</label>
+
+            <select name="branch">
+
+                <option value="">-- Select Branch --</option>
+
+                <option>Computer Science and Engineering</option>
+                <option>Information Science</option>
+                <option>Artificial Intelligence and Machine Learning</option>
+                <option>Data Science</option>
+                <option>Information Technology</option>
+                <option>Electronics and Communication</option>
+                <option>Electrical and Electronics</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Biotechnology</option>
+                <option>Food Technology</option>
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>College / University:</label>
+
+            <input type="text"
+                   name="college"
+                   placeholder="Enter college name">
+
+            <br><br>
+
+            <label>Graduation Year:</label>
+
+            <select name="year">
+
+                <option value="">-- Select Year --</option>
+
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
+
+            </select>
+
+            <br><br>
+
+            <label>CGPA / Percentage:</label>
+
+            <input type="text"
+                   name="marks"
+                   placeholder="Enter CGPA or percentage">
+
+        </fieldset>
+
+
+        <!-- JOB DETAILS -->
+
+        <fieldset>
+
+            <legend>💼 3. Job Details</legend>
+
+            <label>Position Applying For:</label>
+
+            <select name="position">
+
+                <option value="">-- Select Job Role --</option>
+
+                <option>Software Developer</option>
+                <option>Java Developer</option>
+                <option>Python Developer</option>
+                <option>C Developer</option>
+                <option>C++ Developer</option>
+                <option>Web Developer</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Mobile App Developer</option>
+                <option>Android Developer</option>
+                <option>Data Analyst</option>
+                <option>Data Scientist</option>
+                <option>Machine Learning Engineer</option>
+                <option>AI Engineer</option>
+                <option>Cloud Engineer</option>
+                <option>DevOps Engineer</option>
+                <option>Cyber Security Analyst</option>
+                <option>Database Administrator</option>
+                <option>Software Tester</option>
+                <option>QA Engineer</option>
+                <option>UI/UX Designer</option>
+                <option>Intern</option>
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Employment Type:</label>
+
+            <select name="employment">
+
+                <option value="">-- Select Employment Type --</option>
+
+                <option>Full Time</option>
+                <option>Part Time</option>
+                <option>Internship</option>
+                <option>Contract</option>
+                <option>Freelance</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Work Preference:</label>
+
+            <select name="work">
+
+                <option value="">-- Select Work Preference --</option>
+
+                <option>Work From Office</option>
+                <option>Work From Home</option>
+                <option>Hybrid</option>
+                <option>Any</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Preferred Location:</label>
+
+            <select name="location">
+
+                <option value="">-- Select Location --</option>
+
+                <option>Bengaluru</option>
+                <option>Mysuru</option>
+                <option>Mangaluru</option>
+                <option>Chikkamagaluru</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+                <option>Mumbai</option>
+                <option>Pune</option>
+                <option>Delhi</option>
+                <option>Noida</option>
+                <option>Gurugram</option>
+                <option>Kolkata</option>
+                <option>Ahmedabad</option>
+                <option>Other</option>
+
+            </select>
+
+        </fieldset>
+
+
+        <!-- EXPERIENCE -->
+
+        <fieldset>
+
+            <legend>📊 4. Experience Details</legend>
+
+            <label>Experience Level:</label>
+
+            <select name="experience">
+
+                <option value="">-- Select Experience --</option>
+
+                <option>Fresher</option>
+                <option>Less than 1 Year</option>
+                <option>1 - 2 Years</option>
+                <option>2 - 3 Years</option>
+                <option>3 - 5 Years</option>
+                <option>5 - 10 Years</option>
+                <option>10+ Years</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Previous Company:</label>
+
+            <input type="text"
+                   name="company"
+                   placeholder="Enter company name">
+
+            <br><br>
+
+            <label>Previous Job Role:</label>
+
+            <input type="text"
+                   name="previousrole"
+                   placeholder="Enter previous role">
+
+        </fieldset>
+
+
+        <!-- SKILLS -->
+
+        <fieldset>
+
+            <legend>💻 5. Technical Skills</legend>
+
+            <p>Select all applicable skills:</p>
+
+            <div class="skills">
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="C">
+                    C
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="C++">
+                    C++
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Java">
+                    Java
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Python">
+                    Python
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="JavaScript">
+                    JavaScript
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="HTML">
+                    HTML
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="CSS">
+                    CSS
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="React">
+                    React
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Angular">
+                    Angular
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="NodeJS">
+                    Node.js
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="SQL">
+                    SQL
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="MySQL">
+                    MySQL
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="MongoDB">
+                    MongoDB
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Git">
+                    Git
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="SpringBoot">
+                    Spring Boot
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="MachineLearning">
+                    Machine Learning
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="DataScience">
+                    Data Science
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="AWS">
+                    AWS
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Docker">
+                    Docker
+                </div>
+
+                <div class="skill">
+                    <input type="checkbox" name="skills" value="Linux">
+                    Linux
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+        <!-- SALARY -->
+
+        <fieldset>
+
+            <legend>💰 6. Salary Details</legend>
+
+            <label>Expected Salary:</label>
+
+            <select name="salary">
+
+                <option value="">-- Select Expected Salary --</option>
+
+                <option>Below ₹2 LPA</option>
+                <option>₹2 - ₹3 LPA</option>
+                <option>₹3 - ₹4 LPA</option>
+                <option>₹4 - ₹5 LPA</option>
+                <option>₹5 - ₹7 LPA</option>
+                <option>₹7 - ₹10 LPA</option>
+                <option>₹10 - ₹15 LPA</option>
+                <option>Above ₹15 LPA</option>
+                <option>Negotiable</option>
+
+            </select>
+
+        </fieldset>
+
+
+        <!-- AVAILABILITY -->
+
+        <fieldset>
+
+            <legend>📅 7. Availability</legend>
+
+            <label>Notice Period:</label>
+
+            <select name="notice">
+
+                <option value="">-- Select Notice Period --</option>
+
+                <option>Immediately Available</option>
+                <option>Less than 15 Days</option>
+                <option>15 Days</option>
+                <option>30 Days</option>
+                <option>60 Days</option>
+                <option>90 Days</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Available for Interview:</label>
+
+            <select name="interview">
+
+                <option value="">-- Select Time --</option>
+
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>Any Time</option>
+
+            </select>
+
+        </fieldset>
+
+
+        <!-- RESUME -->
+
+        <fieldset>
+
+            <legend>📄 8. Resume and Documents</legend>
+
+            <label>Upload Resume:</label>
+
+            <input type="file"
+                   name="resume"
+                   accept=".pdf,.doc,.docx">
+
+            <br><br>
+
+            <label>Upload Photo:</label>
+
+            <input type="file"
+                   name="photo"
+                   accept=".jpg,.jpeg,.png">
+
+        </fieldset>
+
+
+        <!-- ADDITIONAL INFORMATION -->
+
+        <fieldset>
+
+            <legend>✍️ 9. Additional Information</legend>
+
+            <label>Why should we hire you?</label>
+
+            <textarea name="message"
+                      rows="6"
+                      placeholder="Write about yourself..."></textarea>
+
+            <br><br>
+
+            <label>LinkedIn Profile:</label>
+
+            <input type="url"
+                   name="linkedin"
+                   placeholder="https://linkedin.com/...">
+
+            <br><br>
+
+            <label>GitHub Profile:</label>
+
+            <input type="url"
+                   name="github"
+                   placeholder="https://github.com/...">
+
+        </fieldset>
+
+
+        <!-- DECLARATION -->
+
+        <fieldset class="declaration">
+
+            <legend>✅ 10. Declaration</legend>
+
+            <input type="checkbox" required>
+
+            I confirm that all the information provided by me
+            is correct and complete.
+
+        </fieldset>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button type="submit" class="submit-btn">
+                🚀 SUBMIT APPLICATION
+            </button>
+
+            <button type="reset" class="reset-btn">
+                🔄 CLEAR FORM
+            </button>
+
+        </div>
+
+    </form>
+
+<div class="footer">
+
+    © 2026 Job Application App |
+    Created by <strong>RACHANA GUBBHIHALLI SHASHIDHARA</strong>
+
+</div>
+
+
+<!-- Supabase library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Supabase configuration -->
+<script src="supabase-config.js"></script>
+
+<!-- Job application code -->
+<script src="job.js"></script>
+
+
+</body>
+</html>
